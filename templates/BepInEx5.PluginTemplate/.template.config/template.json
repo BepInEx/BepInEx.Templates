@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "BepInEx",
+  "classifications": [ "BepInEx", "BepInEx 5" , "Plugin" ],
+  "identity": "BepInEx5.Plugin",
+  "name": "BepInEx 5 Plugin Template",
+  "shortName": "bepinex5plugin",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "preferNameDirectory": true,
+  "sourceName": "BepInEx5.PluginTemplate",
+  "symbols": {
+    "TargetFramework": {
+      "type": "parameter",
+      "description": "The target framework for the project",
+      "datatype": "text",
+      "defaultValue": "net35",
+      "replaces": "net35"
+    },
+    "Description": {
+      "type": "parameter",
+      "description": "Plugin description",
+      "datatype": "text",
+      "replaces": "My first plugin",
+      "defaultValue": "My first plugin"
+    },
+    "Version": {
+      "type": "parameter",
+      "description": "Plugin version",
+      "datatype": "text",
+      "defaultValue": "1.0.0"
+    },
+    "VersionImpl": {
+      "type": "generated",
+      "generator": "join",
+      "replaces": "<Version>1.0.0</Version>",
+      "parameters": {
+        "symbols": [
+          {
+            "type": "const",
+            "value": "<Version>"
+          },
+          {
+            "type": "ref",
+            "value": "Version"
+          },
+          {
+            "type": "const",
+            "value": "</Version>"
+          }
+        ]
+      }
+    }
+  }
+}
