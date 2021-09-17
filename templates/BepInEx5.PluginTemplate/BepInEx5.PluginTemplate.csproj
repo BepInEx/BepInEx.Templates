@@ -11,8 +11,8 @@
 
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.0.4" PrivateAssets="all" />
-    <PackageReference Include="BepInEx.Core" Version="5.4.15" />
-    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.0.0" />
+    <PackageReference Include="BepInEx.Core" Version="5.*" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
     <PackageReference Include="UnityEngine" Version="5.6.1" IncludeAssets="compile" />
   </ItemGroup>
   

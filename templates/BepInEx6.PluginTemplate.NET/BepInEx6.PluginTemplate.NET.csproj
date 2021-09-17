@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="BepInEx.NetLauncher" Version="6.0.0-*" IncludeAssets="compile" />
-    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.0.0" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">

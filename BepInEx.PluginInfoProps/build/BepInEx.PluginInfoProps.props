@@ -5,15 +5,17 @@
             <BepInExPluginName Condition="'$(BepInExPluginName)' == ''">$(Product)</BepInExPluginName>
             <BepInExPluginVersion Condition="'$(BepInExPluginVersion)' == ''">$(Version)</BepInExPluginVersion>
             <GeneratedText><![CDATA[
-using System%3B
-internal static class PluginInfo
+namespace $(RootNamespace)
 {
-    public const string PLUGIN_GUID = "$(BepInExPluginGuid)"%3B
-    public const string PLUGIN_NAME = "$(BepInExPluginName)"%3B
-    public const string PLUGIN_VERSION = "$(BepInExPluginVersion)"%3B
+    public static class PluginInfo
+    {
+        public const string PLUGIN_GUID = "$(BepInExPluginGuid)"%3B
+        public const string PLUGIN_NAME = "$(BepInExPluginName)"%3B
+        public const string PLUGIN_VERSION = "$(BepInExPluginVersion)"%3B
+    }
 }
       ]]></GeneratedText>
-            <GeneratedFilePath>$(IntermediateOutputPath)GeneratedFile.cs</GeneratedFilePath>
+            <GeneratedFilePath>$(IntermediateOutputPath)PluginInfo.cs</GeneratedFilePath>
         </PropertyGroup>
         <ItemGroup>
             <Compile Include="$(GeneratedFilePath)" />
