@@ -26,6 +26,13 @@
       "replaces": "My first plugin",
       "defaultValue": "My first plugin"
     },
+    "UnityVersion": {
+      "type": "parameter",
+      "description": "Unity version to use when developing the plugin",
+      "datatype": "text",
+      "replaces": "5.6.0",
+      "defaultValue": "5.6.0"
+    },
     "Version": {
       "type": "parameter",
       "description": "Plugin version",
