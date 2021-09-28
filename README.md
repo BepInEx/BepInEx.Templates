@@ -56,5 +56,5 @@ Options:
 
 ## Documentation, guides and more
 
-For more guides, refer to [BepInEx wiki](https://bepinex.github.io/bepinex_docs/master/articles/index.html).  
-If you're writing a BepInEx plugin for the first time, [check out the plugin development walkthrough](https://bepinex.github.io/bepinex_docs/master/articles/dev_guide/plugin_tutorial/index.html).
+For more guides, refer to [BepInEx Docs](https://docs.bepinex.dev).  
+If you're writing a BepInEx plugin for the first time, [check out the plugin development walkthrough](https://docs.bepinex.dev/articles/dev_guide/plugin_tutorial/index.html).
