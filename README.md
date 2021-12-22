@@ -4,6 +4,8 @@ A collection of .NET project templates for BepInEx 5 and 6 plugins
 
 ## Installation
 
+You will need [.NET 6 or newer](https://dotnet.microsoft.com/download) to use the templates.
+
 To install, use [dotnet](https://dotnet.microsoft.com/download) tool:
 
 ```
