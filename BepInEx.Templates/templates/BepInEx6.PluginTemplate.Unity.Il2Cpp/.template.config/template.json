@@ -1,16 +1,16 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "BepInEx",
-  "classifications": [ "BepInEx", "BepInEx 6" , "Plugin", "Il2Cpp" ],
-  "identity": "BepInEx6.Plugin.Il2Cpp",
-  "name": "BepInEx 6 Il2Cpp Plugin Template",
-  "shortName": "bep6plugin_il2cpp",
+  "classifications": [ "BepInEx", "BepInEx 6" , "Plugin", "Unity", "Il2Cpp" ],
+  "identity": "BepInEx6.Plugin.Unity.Il2Cpp",
+  "name": "BepInEx 6 Unity Il2Cpp Plugin",
+  "shortName": "bep6plugin_unity_il2cpp",
   "tags": {
     "language": "C#",
     "type": "project"
   },
   "preferNameDirectory": true,
-  "sourceName": "BepInEx6.PluginTemplate.Il2Cpp",
+  "sourceName": "BepInEx6.PluginTemplate.Unity.Il2Cpp",
   "symbols": {
     "TargetFramework": {
       "type": "parameter",

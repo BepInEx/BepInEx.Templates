@@ -1,23 +1,23 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "BepInEx",
-  "classifications": [ "BepInEx", "BepInEx 5" , "Plugin" ],
-  "identity": "BepInEx5.Plugin",
-  "name": "BepInEx 5 Plugin Template",
-  "shortName": "bepinex5plugin",
+  "classifications": [ "BepInEx", "BepInEx 6" , "Plugin" , ".NET Framework" ],
+  "identity": "BepInEx6.PluginTemplate.NET.Framework",
+  "name": "BepInEx 6 .NET Framework Plugin",
+  "shortName": "bep6plugin_netfx",
   "tags": {
     "language": "C#",
     "type": "project"
   },
   "preferNameDirectory": true,
-  "sourceName": "BepInEx5.PluginTemplate",
+  "sourceName": "BepInEx6.PluginTemplate.NET.Framework",
   "symbols": {
     "TargetFramework": {
       "type": "parameter",
       "description": "The target framework for the project",
       "datatype": "text",
-      "defaultValue": "net35",
-      "replaces": "net35"
+      "defaultValue": "net452",
+      "replaces": "net452"
     },
     "Description": {
       "type": "parameter",
@@ -25,13 +25,6 @@
       "datatype": "text",
       "replaces": "My first plugin",
       "defaultValue": "My first plugin"
-    },
-    "UnityVersion": {
-      "type": "parameter",
-      "description": "Unity version to use when developing the plugin",
-      "datatype": "text",
-      "replaces": "5.6.0",
-      "defaultValue": "5.6.0"
     },
     "Version": {
       "type": "parameter",
