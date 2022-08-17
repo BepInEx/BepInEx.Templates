@@ -1,14 +1,13 @@
 ﻿using BepInEx;
 
-namespace BepInEx5.PluginTemplate
+namespace BepInEx5.PluginTemplate;
+
+[BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+public class Plugin : BaseUnityPlugin
 {
-    [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
-    public class Plugin : BaseUnityPlugin
+    private void Awake()
     {
-        private void Awake()
-        {
-            // Plugin startup logic
-            Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
-        }
+        // Plugin startup logic
+        Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
     }
 }
