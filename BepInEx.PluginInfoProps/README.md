@@ -1,6 +1,6 @@
 ## BepInEx PluginInfo generator
 
-Generates `PluginInfo.cs` based on csproj tags.
+Generates `MyPluginInfo.cs` based on csproj tags.
 
 ## Basic usage
 
@@ -16,7 +16,8 @@ this will generate the following class:
 
 ```cs
 using System;
-internal static class PluginInfo
+
+internal static class MyPluginInfo
 {
     public const string PLUGIN_GUID = "Example.Plugin";
     public const string PLUGIN_NAME = "My first plugin";
