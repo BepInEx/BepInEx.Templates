@@ -8,7 +8,7 @@ Define the following properties in your `csproj`:
 
 ```xml
 <AssemblyName>Example.Plugin</AssemblyName>
-<Description>My first plugin</Description>
+<Product>My first plugin</Product>
 <Version>1.0.0</Version>
 ```
 
