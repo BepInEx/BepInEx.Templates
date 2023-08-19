@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
     <AssemblyName>BepInEx6.PluginTemplate.NET.Framework</AssemblyName>
-    <Description>My first plugin</Description>
+    <Product>My first plugin</Product>
     <Version>1.0.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
