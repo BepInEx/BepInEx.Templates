@@ -8,7 +8,7 @@ public class Plugin : BaseUnityPlugin
 {
     internal static new ManualLogSource Logger;
 
-    public override void Load()
+    private void Awake()
     {
         // Plugin startup logic
         this.Logger = base.Logger;
