@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BepInEx.Templates", "BepInEx.Templates\BepInEx.Templates.csproj", "{C57C43F6-3BCC-42C5-83C3-48DD6CA51245}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BepInEx.PluginInfoProps", "BepInEx.PluginInfoProps\BepInEx.PluginInfoProps.csproj", "{E05232A2-D0AD-435C-8C16-BC954E43E97B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{BD2D4189-0F06-4F95-9E6A-61B0B6468BCF}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C57C43F6-3BCC-42C5-83C3-48DD6CA51245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C57C43F6-3BCC-42C5-83C3-48DD6CA51245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C57C43F6-3BCC-42C5-83C3-48DD6CA51245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C57C43F6-3BCC-42C5-83C3-48DD6CA51245}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E05232A2-D0AD-435C-8C16-BC954E43E97B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E05232A2-D0AD-435C-8C16-BC954E43E97B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E05232A2-D0AD-435C-8C16-BC954E43E97B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E05232A2-D0AD-435C-8C16-BC954E43E97B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

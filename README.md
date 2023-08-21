@@ -6,13 +6,17 @@ A collection of .NET project templates for BepInEx 5 and 6 plugins
 
 You will need [.NET 6 or newer](https://dotnet.microsoft.com/download) to use the templates.
 
-To install, use [dotnet](https://dotnet.microsoft.com/download) tool:
+To install, use [dotnet](https://dotnet.microsoft.com/download) tool.
+
+### Install stable templates
+
+These templates are for **BepInEx 5** and **BepInEx 6.0.0-pre**:
 
 ```
 dotnet new -i BepInEx.Templates --nuget-source https://nuget.bepinex.dev/v3/index.json
 ```
 
-This will install the following project templates:
+This will install the following templates:
 
 | Templates                                    | Short Name           | Language   | Tags                                   |
 | -------------------------------------------- | -------------------- | ---------- | -------------------------------------- |
@@ -20,6 +24,24 @@ This will install the following project templates:
 | BepInEx 6 .NET Launcher Plugin Template      | bep6plugin_netfx     | [C#]       | BepInEx/BepInEx 6/Plugin/.NET Launcher |
 | BepInEx 6 Il2Cpp Plugin Template             | bep6plugin_il2cpp    | [C#]       | BepInEx/BepInEx 6/Plugin/Il2Cpp        |
 | BepInEx 6 Unity Mono Plugin Template         | bep6plugin_unitymono | [C#]       | BepInEx/BepInEx 6/Plugin/Unity Mono    |
+
+### Install Bleeding Edge templates
+
+These templates are for **BepInEx 5** and **BepInEx 6.0.0-be** builds:
+
+```
+dotnet new -i BepInEx.Templates::2.0.0-be.1 --nuget-source https://nuget.bepinex.dev/v3/index.json
+```
+
+This will install the following project templates:
+
+| Templates                         | Short Name              | Language | Tags                                       |
+|-----------------------------------|-------------------------|----------|--------------------------------------------|
+| BepInEx 5 Plugin                  | bepinex5plugin          | [C#]     | BepInEx/BepInEx 5/Plugin                   |
+| BepInEx 6 .NET Core Plugin        | bep6plugin_coreclr      | [C#]     | BepInEx/BepInEx 6/Plugin/CoreCLR/.NET Core |
+| BepInEx 6 .NET Framework Plugin   | bep6plugin_netfx        | [C#]     | BepInEx/BepInEx 6/Plugin/.NET Framework    |
+| BepInEx 6 Unity Il2Cpp Plugin     | bep6plugin_unity_il2cpp | [C#]     | BepInEx/BepInEx 6/Plugin/Unity/Il2Cpp      |
+| BepInEx 6 Unity Mono Plugin       | bep6plugin_unity_mono   | [C#]     | BepInEx/BepInEx 6/Plugin/Unity/Mono        |
 
 ## Using a template
 

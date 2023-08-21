@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <PackageId>BepInEx.PluginInfoProps</PackageId>
+        <Version>2.1.0</Version>
+        <Authors>BepInEx</Authors>
+        <PackageProjectUrl>https://github.com/BepInEx/BepInEx.Templates/tree/master/BepInEx.PluginInfoProps</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <Description>Helper build target that generates PluginInfo class based on assembly metadata.</Description>
+        <PackageTags>BepInEx;Build;Props</PackageTags>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <TargetFrameworks>net20;netstandard2.0</TargetFrameworks>
+        <PackageOutputPath>$(SolutionDir)nuget</PackageOutputPath>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <IncludeContentInPack>true</IncludeContentInPack>
+        <ContentTargetFolders>build</ContentTargetFolders>
+        <NoWarn>$(NoWarn);NU5128</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="BepInEx.PluginInfoProps.props" />
+        <Compile Remove="**\*" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+</Project>
