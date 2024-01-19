@@ -7,7 +7,7 @@
             <GeneratedText><![CDATA[
 namespace $(RootNamespace)
 {
-    public static class MyPluginInfo
+    internal static class MyPluginInfo
     {
         public const string PLUGIN_GUID = "$(BepInExPluginGuid)"%3B
         public const string PLUGIN_NAME = "$(BepInExPluginName)"%3B
