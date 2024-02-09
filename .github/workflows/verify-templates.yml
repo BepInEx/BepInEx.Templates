@@ -18,7 +18,7 @@ jobs:
       - name: Setup .NET env
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "6.0.418"
+          dotnet-version: 6.x
 
       - name: Dry-run Templates
         uses: ./.github/actions/dryrun-templates
@@ -36,7 +36,7 @@ jobs:
       - name: Setup .NET env
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "7.0.405"
+          dotnet-version: 7.x
 
       - name: Dry-run Templates
         uses: ./.github/actions/dryrun-templates
@@ -54,7 +54,7 @@ jobs:
       - name: Setup .NET env
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.101"
+          dotnet-version: 8.x
 
       - name: Dry-run Templates
         uses: ./.github/actions/dryrun-templates
