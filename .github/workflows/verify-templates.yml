@@ -16,12 +16,13 @@ jobs:
           filter: tree:0
           
       - name: Setup .NET env
-        uses: actions/setup-dotnet@v3
-        id: stepid
+        uses: actions/setup-dotnet@v4
+        id: setup-dotnet
         with:
           dotnet-version: 6.x
 
-      - run: echo '${{ steps.stepid.outputs.dotnet-version }}'
+      - run: |
+          dotnet new globaljson --sdk-version ${{ steps.setup-dotnet.outputs.dotnet-version }}
 
       - name: Dry-run Templates
         uses: ./.github/actions/dryrun-templates
@@ -37,12 +38,13 @@ jobs:
           filter: tree:0
 
       - name: Setup .NET env
-        uses: actions/setup-dotnet@v3
-        id: stepid
+        uses: actions/setup-dotnet@v4
+        id: setup-dotnet
         with:
           dotnet-version: 7.x
 
-      - run: echo '${{ steps.stepid.outputs.dotnet-version }}'
+      - run: |
+          dotnet new globaljson --sdk-version ${{ steps.setup-dotnet.outputs.dotnet-version }}
 
       - name: Dry-run Templates
         uses: ./.github/actions/dryrun-templates
@@ -58,12 +60,13 @@ jobs:
           filter: tree:0
 
       - name: Setup .NET env
-        uses: actions/setup-dotnet@v3
-        id: stepid
+        uses: actions/setup-dotnet@v4
+        id: setup-dotnet
         with:
           dotnet-version: 8.x
 
-      - run: echo '${{ steps.stepid.outputs.dotnet-version }}'
+      - run: |
+          dotnet new globaljson --sdk-version ${{ steps.setup-dotnet.outputs.dotnet-version }}
 
       - name: Dry-run Templates
         uses: ./.github/actions/dryrun-templates
