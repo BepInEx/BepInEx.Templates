@@ -11,9 +11,6 @@ jobs:
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v4
-        with:
-          filter-depth: 0
-          filter: tree:0
           
       - name: Setup .NET env
         uses: actions/setup-dotnet@v4
@@ -33,9 +30,6 @@ jobs:
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v4
-        with:
-          filter-depth: 0
-          filter: tree:0
 
       - name: Setup .NET env
         uses: actions/setup-dotnet@v4
@@ -55,9 +49,6 @@ jobs:
     steps:
       - name: Fetch Sources
         uses: actions/checkout@v4
-        with:
-          filter-depth: 0
-          filter: tree:0
 
       - name: Setup .NET env
         uses: actions/setup-dotnet@v4
