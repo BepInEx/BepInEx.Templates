@@ -30,28 +30,8 @@
       "type": "parameter",
       "description": "Plugin version",
       "datatype": "text",
+      "replaces": "{version}",
       "defaultValue": "1.0.0"
-    },
-    "VersionImpl": {
-      "type": "generated",
-      "generator": "join",
-      "replaces": "<Version>1.0.0</Version>",
-      "parameters": {
-        "symbols": [
-          {
-            "type": "const",
-            "value": "<Version>"
-          },
-          {
-            "type": "ref",
-            "value": "Version"
-          },
-          {
-            "type": "const",
-            "value": "</Version>"
-          }
-        ]
-      }
     }
   }
 }
