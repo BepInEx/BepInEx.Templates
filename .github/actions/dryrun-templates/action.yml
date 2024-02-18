@@ -1,0 +1,37 @@
+runs:
+  using: "composite"
+  steps:
+    - name: Install Templates
+      run: |
+        dotnet new --install ./BepInEx.Templates/templates/
+      shell: bash
+        
+    - name: Test BepInEx5 Template
+      if: always()
+      run: |
+        dotnet new bepinex5plugin --dry-run --diagnostics
+      shell: bash
+    
+    - name: Test BepInEx6 .NET Core Template
+      if: always()
+      run: |
+        dotnet new bep6plugin_coreclr --dry-run --diagnostics
+      shell: bash
+    
+    - name: Test BepInEx6 .NET Framework Template
+      if: always()
+      run: |
+        dotnet new bep6plugin_netfx --dry-run --diagnostics
+      shell: bash
+    
+    - name: Test BepInEx6 Unity IL2CPP Template
+      if: always()
+      run: |
+        dotnet new bep6plugin_unity_il2cpp --dry-run --diagnostics
+      shell: bash
+    
+    - name: Test BepInEx6 Unity Mono Template
+      if: always()
+      run: |
+        dotnet new bep6plugin_unity_mono --dry-run --diagnostics
+      shell: bash

@@ -1,0 +1,63 @@
+name: Verify Templates
+
+on:
+  push:
+  pull_request:
+  
+jobs:
+  test-sdk6:
+    name: Test .NET SDK 6
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Sources
+        uses: actions/checkout@v4
+          
+      - name: Setup .NET env
+        uses: actions/setup-dotnet@v4
+        id: setup-dotnet
+        with:
+          dotnet-version: 6.x
+
+      - run: |
+          dotnet new globaljson --sdk-version ${{ steps.setup-dotnet.outputs.dotnet-version }}
+
+      - name: Dry-run Templates
+        uses: ./.github/actions/dryrun-templates
+  
+  test-sdk7:
+    name: Test .NET SDK 7
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Sources
+        uses: actions/checkout@v4
+
+      - name: Setup .NET env
+        uses: actions/setup-dotnet@v4
+        id: setup-dotnet
+        with:
+          dotnet-version: 7.x
+
+      - run: |
+          dotnet new globaljson --sdk-version ${{ steps.setup-dotnet.outputs.dotnet-version }}
+
+      - name: Dry-run Templates
+        uses: ./.github/actions/dryrun-templates
+    
+  test-sdk8:
+    name: Test .NET SDK 8
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Sources
+        uses: actions/checkout@v4
+
+      - name: Setup .NET env
+        uses: actions/setup-dotnet@v4
+        id: setup-dotnet
+        with:
+          dotnet-version: 8.x
+
+      - run: |
+          dotnet new globaljson --sdk-version ${{ steps.setup-dotnet.outputs.dotnet-version }}
+
+      - name: Dry-run Templates
+        uses: ./.github/actions/dryrun-templates
