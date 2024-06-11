@@ -13,7 +13,7 @@ To install, use [dotnet](https://dotnet.microsoft.com/download) tool.
 These templates are for **BepInEx 5** and **BepInEx 6.0.0-pre**:
 
 ```
-dotnet new -i BepInEx.Templates --nuget-source https://nuget.bepinex.dev/v3/index.json
+dotnet new install BepInEx.Templates --nuget-source https://nuget.bepinex.dev/v3/index.json
 ```
 
 This will install the following templates:
@@ -30,7 +30,7 @@ This will install the following templates:
 These templates are for **BepInEx 5** and **BepInEx 6.0.0-be** builds:
 
 ```
-dotnet new -i BepInEx.Templates::2.0.0-be.1 --nuget-source https://nuget.bepinex.dev/v3/index.json
+dotnet new install BepInEx.Templates::2.0.0-be.3 --nuget-source https://nuget.bepinex.dev/v3/index.json
 ```
 
 This will install the following project templates:
