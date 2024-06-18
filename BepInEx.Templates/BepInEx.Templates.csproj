@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>2.0.0-be.3</PackageVersion>
+    <PackageVersion>2.0.0-be.4</PackageVersion>
     <PackageId>BepInEx.Templates</PackageId>
     <Title>BepInEx Plugin Templates</Title>
     <Authors>BepInEx</Authors>
