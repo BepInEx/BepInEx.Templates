@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Logging;
 using BepInEx.NET.Common;
 
 namespace BepInEx6.PluginTemplate.NET.Framework;
@@ -11,7 +12,7 @@ public class Plugin : BasePlugin
     public override void Load()
     {
         // Plugin startup logic
-        this.Log = base.Log;
+        Log = base.Log;
         Log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
     }
 }

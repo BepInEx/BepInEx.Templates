@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Logging;
 
 namespace BepInEx5.PluginTemplate;
 
@@ -10,7 +11,7 @@ public class Plugin : BaseUnityPlugin
     private void Awake()
     {
         // Plugin startup logic
-        this.Logger = Logger;
+        Logger = base.Logger;
         Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
     }
 }
