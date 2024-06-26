@@ -30,7 +30,7 @@ This will install the following templates:
 These templates are for **BepInEx 5** and **BepInEx 6.0.0-be** builds:
 
 ```
-dotnet new install BepInEx.Templates::2.0.0-be.3 --nuget-source https://nuget.bepinex.dev/v3/index.json
+dotnet new install BepInEx.Templates::2.0.0-be.4 --nuget-source https://nuget.bepinex.dev/v3/index.json
 ```
 
 This will install the following project templates:
