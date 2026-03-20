@@ -7,7 +7,7 @@ Generates `MyPluginInfo.cs` based on csproj tags.
 Define the following properties in your `csproj`:
 
 ```xml
-<AssemblyName>Example.Plugin</AssemblyName>
+<GUID>Example.Plugin</GUID> <!--  Optional. If missing, <AssemblyName> is used as GUID instead. -->
 <Product>My first plugin</Product>
 <Version>1.0.0</Version>
 ```
