@@ -1,11 +1,15 @@
 <Project>
-    <Target Name="AddGeneratedFile" BeforeTargets="BeforeCompile;CoreCompile" Inputs="$(MSBuildAllProjects)" Outputs="$(IntermediateOutputPath)GeneratedFile.cs">
+    <PropertyGroup>
+        <FileExtension Condition="$(MSBuildProjectExtension) == '.fsproj'">fs</FileExtension>
+        <FileExtension Condition="$(MSBuildProjectExtension) == '.csproj'">cs</FileExtension>
+    </PropertyGroup>
+    <Target Name="AddGeneratedFile" BeforeTargets="BeforeCompile;CoreCompile" Inputs="$(MSBuildAllProjects)" Outputs="$(IntermediateOutputPath)GeneratedFile.$(FileExtension)">
         <PropertyGroup>
             <BepInExPluginGuid Condition="'$(BepInExPluginGuid)' == ''">$(GUID)</BepInExPluginGuid>
             <BepInExPluginGuid Condition="'$(BepInExPluginGuid)' == ''">$(AssemblyName)</BepInExPluginGuid>
             <BepInExPluginName Condition="'$(BepInExPluginName)' == ''">$(Product)</BepInExPluginName>
             <BepInExPluginVersion Condition="'$(BepInExPluginVersion)' == ''">$(Version)</BepInExPluginVersion>
-            <GeneratedText><![CDATA[
+            <GeneratedText Condition="'$(FileExtension)' == 'cs'"><![CDATA[
 namespace $(RootNamespace)
 {
     internal static class MyPluginInfo
@@ -16,10 +20,25 @@ namespace $(RootNamespace)
     }
 }
       ]]></GeneratedText>
-            <GeneratedFilePath>$(IntermediateOutputPath)MyPluginInfo.cs</GeneratedFilePath>
+            <GeneratedText Condition="'$(FileExtension)' == 'fs'"><![CDATA[
+namespace $(RootNamespace)
+
+module internal MyPluginInfo = 
+    [<Literal>] 
+    let PLUGIN_GUID: string = "$(BepInExPluginGuid)"
+    [<Literal>] 
+    let PLUGIN_NAME: string = "$(BepInExPluginName)"
+    [<Literal>] 
+    let PLUGIN_VERSION: string = "$(BepInExPluginVersion)"
+      ]]></GeneratedText>
+            <GeneratedFilePath>$(IntermediateOutputPath)MyPluginInfo.$(FileExtension)</GeneratedFilePath>
         </PropertyGroup>
         <ItemGroup>
+            <FSharpOrderedCompile Include="@(Compile)" Condition="'$(FileExtension)' == 'fs'"/> <!-- Here we save F#'s ordered compilation -->
+            <Compile Remove="@(FSharpOrderedCompile)" Condition="'$(FileExtension)' == 'fs'"/>  <!-- because FSC cares about the order.    -->
+
             <Compile Include="$(GeneratedFilePath)" />
+            <Compile Include="@(FSharpOrderedCompile)" Condition="'$(FileExtension)' == 'fs'"/> <!-- Add after so PluginInfo is accessible.-->
             <FileWrites Include="$(GeneratedFilePath)" />
         </ItemGroup>
         <WriteLinesToFile Lines="$(GeneratedText)" File="$(GeneratedFilePath)" WriteOnlyWhenDifferent="true" Overwrite="true" />
