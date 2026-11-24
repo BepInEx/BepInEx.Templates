@@ -1,11 +1,11 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "ResoniteModding",
-  "classifications": [ "BepInEx", "BepInEx 6" , "Plugin" , "CoreCLR", ".NET Core", "Resonite" ],
+  "classifications": [ "BepInEx", "BepInEx 6" , "Plugin" , "CoreCLR", ".NET", ".NET 11", "Resonite" ],
   "identity": "BepInEx6.PluginTemplate.Resonite",
-  "name": "BepInEx 6 Resonite Plugin (.NET 10, Thunderstore Ready)",
+  "name": "BepInEx 6 Resonite Plugin (.NET 11, Thunderstore Ready)",
   "shortName": "bep6resonite",
-  "description": "Creates a BepInEx 6 plugin for Resonite with .NET 10, auto-detection of game path, configurable package ID, and Thunderstore publishing support",
+  "description": "Creates a BepInEx 6 plugin for Resonite with .NET 11, auto-detection of game path, configurable package ID, Thunderstore publishing support, and optional GitHub Actions/Dependabot",
   "tags": {
     "language": "C#",
     "type": "project"
@@ -13,7 +13,33 @@
   "guids": ["67CE1C26-43EB-4A9A-978A-2A411A6D825B"],
   "preferNameDirectory": true,
   "sourceName": "ProjectName",
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "ci != \"github\"",
+          "exclude": [ ".github/**" ]
+        }
+      ]
+    }
+  ],
   "symbols": {
+    "ci": {
+      "type": "parameter",
+      "description": "CI configuration to include (bep6resonite-github preselects github)",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "none",
+          "description": "No CI configuration"
+        },
+        {
+          "choice": "github",
+          "description": "GitHub Actions and Dependabot"
+        }
+      ],
+      "defaultValue": "none"
+    },
     "version": {
       "type": "parameter",
       "description": "Plugin version (e.g., '1.0.0')",
@@ -177,7 +203,7 @@
       "description": "Next steps",
       "manualInstructions": [
         {
-          "text": "\nYour BepInEx 6 Resonite plugin has been created successfully!\n\nTo get started:\n  cd into your new project directory\n\nNext steps:\n  1. Set ResonitePath environment variable or update GamePath in the .csproj to your Resonite installation folder\n  2. Review and update project metadata in the .csproj file (Version, Authors, etc.)\n  3. Build with 'dotnet build' - this will automatically copy the plugin to BepInEx/plugins folder\n\nPublishing to Thunderstore:\n  1. Update thunderstore.toml with your mod details\n  2. Replace icon.png with your mod icon\n  3. Either:\n     - Run 'dotnet tcli build' to create a ZIP, then upload at https://thunderstore.io/package/create\n     - Or run 'dotnet tcli publish --token YOUR_API_TOKEN' to build and upload automatically\n\nFor more information, see the README.md file in your project."
+          "text": "\nYour BepInEx 6 Resonite plugin has been created successfully!\n\nTo get started:\n  cd into your new project directory\n\nNext steps:\n  1. Review and update project metadata in the .csproj file (Version, Authors, Description, etc.)\n  2. Build with 'dotnet build' - when a Resonite/BepInEx folder is detected the plugin is copied to BepInEx/plugins\n     Override game/BepInEx detection by copying Config.Build.user.props.template to Config.Build.user.props\n\nPublishing to Thunderstore:\n  1. Update thunderstore.toml with your mod details\n  2. Replace icon.png with your mod icon\n  3. Either:\n     - Run 'dotnet tcli build' to create a ZIP, then upload at https://thunderstore.io/package/create\n     - Or run 'dotnet tcli publish --token YOUR_API_TOKEN' to build and upload automatically\n\nFor more information, see the README.md file in your project."
         }
       ],
       "continueOnError": true

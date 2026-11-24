@@ -1,0 +1,214 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "ResoniteModding",
+  "classifications": [
+    "BepInEx",
+    "BepInEx 6",
+    "Plugin",
+    "CoreCLR",
+    ".NET",
+    ".NET 11",
+    "GitHub",
+    "Resonite"
+  ],
+  "identity": "BepInEx6.PluginTemplate.Resonite.GitHub",
+  "name": "BepInEx 6 Resonite Plugin (.NET 11, GitHub Actions, Thunderstore Ready)",
+  "shortName": "bep6resonite-github",
+  "description": "Creates a BepInEx 6 plugin for Resonite with .NET 11, GitHub Actions and Dependabot, auto-detection of game path, configurable package ID, and Thunderstore publishing support",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "guids": [
+    "67CE1C26-43EB-4A9A-978A-2A411A6D825B"
+  ],
+  "preferNameDirectory": true,
+  "sourceName": "ProjectName",
+  "sources": [
+    {
+      "source": "../BepInEx6.PluginTemplate.Resonite",
+      "exclude": [
+        ".template.config/**"
+      ]
+    }
+  ],
+  "symbols": {
+    "ci": {
+      "type": "generated",
+      "generator": "constant",
+      "parameters": {
+        "value": "github"
+      }
+    },
+    "version": {
+      "type": "parameter",
+      "description": "Plugin version (e.g., '1.0.0')",
+      "datatype": "text",
+      "replaces": "{version}",
+      "defaultValue": "1.0.0"
+    },
+    "authors": {
+      "type": "parameter",
+      "description": "Comma-separated list of plugin authors",
+      "datatype": "text",
+      "replaces": "{authors}",
+      "defaultValue": "YourName"
+    },
+    "repositoryUrl": {
+      "type": "parameter",
+      "description": "Repository URL for the plugin (leave empty for auto-generated: https://github.com/[Author]/[ProjectName])",
+      "datatype": "text",
+      "defaultValue": ""
+    },
+    "packageId": {
+      "type": "parameter",
+      "description": "Package ID for the plugin (leave empty for auto-generated: [FirstAuthor].[ProjectName])",
+      "datatype": "text",
+      "defaultValue": ""
+    },
+    "gitInit": {
+      "type": "parameter",
+      "description": "Initialize a git repository",
+      "datatype": "bool",
+      "defaultValue": "true"
+    },
+    "RepositoryUrlComputed": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "repositoryUrl",
+        "fallbackVariableName": "DefaultRepositoryUrl"
+      },
+      "replaces": "{repositoryUrl}"
+    },
+    "DefaultRepositoryUrl": {
+      "type": "generated",
+      "generator": "join",
+      "parameters": {
+        "symbols": [
+          {
+            "type": "const",
+            "value": "https://github.com/"
+          },
+          {
+            "type": "ref",
+            "value": "FirstAuthor"
+          },
+          {
+            "type": "const",
+            "value": "/"
+          },
+          {
+            "type": "ref",
+            "value": "name"
+          }
+        ],
+        "separator": ""
+      }
+    },
+    "FirstAuthor": {
+      "type": "generated",
+      "generator": "regex",
+      "datatype": "text",
+      "parameters": {
+        "source": "authors",
+        "steps": [
+          {
+            "regex": "^([^,]+).*$",
+            "replacement": "$1"
+          },
+          {
+            "regex": "^\\s+|\\s+$",
+            "replacement": ""
+          }
+        ]
+      },
+      "replaces": "{firstAuthor}"
+    },
+    "FirstAuthorSafe": {
+      "type": "generated",
+      "generator": "regex",
+      "datatype": "text",
+      "parameters": {
+        "source": "FirstAuthor",
+        "steps": [
+          {
+            "regex": "[^A-Za-z0-9_\\.]",
+            "replacement": "_"
+          }
+        ]
+      }
+    },
+    "ProjectNameSafe": {
+      "type": "generated",
+      "generator": "regex",
+      "datatype": "text",
+      "parameters": {
+        "source": "name",
+        "steps": [
+          {
+            "regex": "[^A-Za-z0-9_\\.]",
+            "replacement": "_"
+          }
+        ]
+      }
+    },
+    "DefaultPackageId": {
+      "type": "generated",
+      "generator": "join",
+      "parameters": {
+        "symbols": [
+          {
+            "type": "ref",
+            "value": "FirstAuthorSafe"
+          },
+          {
+            "type": "const",
+            "value": "."
+          },
+          {
+            "type": "ref",
+            "value": "ProjectNameSafe"
+          }
+        ],
+        "separator": ""
+      }
+    },
+    "PackageIdComputed": {
+      "type": "generated",
+      "generator": "coalesce",
+      "parameters": {
+        "sourceVariableName": "packageId",
+        "fallbackVariableName": "DefaultPackageId"
+      },
+      "replaces": "{packageId}"
+    }
+  },
+  "postActions": [
+    {
+      "condition": "(gitInit)",
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "description": "Initialize git repository",
+      "manualInstructions": [
+        {
+          "text": "Run 'git init'"
+        }
+      ],
+      "args": {
+        "executable": "git",
+        "args": "init"
+      },
+      "continueOnError": true
+    },
+    {
+      "actionId": "AC1156F7-BB77-4DB8-B28F-24EEBCCA1E5C",
+      "description": "Next steps",
+      "manualInstructions": [
+        {
+          "text": "\nYour BepInEx 6 Resonite plugin with GitHub CI has been created successfully!\n\nTo get started:\n  cd into your new project directory\n\nNext steps:\n  1. Review and update project metadata in the .csproj file (Version, Authors, Description, etc.)\n  2. Build with 'dotnet build' - when a Resonite/BepInEx folder is detected the plugin is copied to BepInEx/plugins\n     Override game/BepInEx detection by copying Config.Build.user.props.template to Config.Build.user.props\n  3. Add the TCLI_AUTH_TOKEN and NUGET_API_KEY repository secrets before using the publish and release workflows\n\nPublishing to Thunderstore:\n  1. Update thunderstore.toml with your mod details\n  2. Replace icon.png with your mod icon\n  3. Either:\n     - Run 'dotnet tcli build' to create a ZIP, then upload at https://thunderstore.io/package/create\n     - Or run 'dotnet tcli publish --token YOUR_API_TOKEN' to build and upload automatically\n     - Or push a 'v*' tag and let the Release workflow create the Thunderstore package\n\nFor more information, see the README.md file in your project."
+        }
+      ],
+      "continueOnError": true
+    }
+  ]
+}

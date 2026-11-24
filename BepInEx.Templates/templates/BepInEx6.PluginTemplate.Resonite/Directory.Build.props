@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <SolutionRoot>$(MSBuildThisFileDirectory)</SolutionRoot>
+  </PropertyGroup>
+
+  <Import Project="$(SolutionRoot)Config.Build.user.props" Condition="Exists('$(SolutionRoot)Config.Build.user.props')" />
+
+  <!--#if (ci == "github") -->
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+  <!--#endif -->
+
+  <PropertyGroup>
+    <Deterministic>true</Deterministic>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <RestoreAdditionalProjectSources>https://nuget-modding.resonite.net/v3/index.json</RestoreAdditionalProjectSources>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GamePath Condition="'$(ResonitePath)' != ''">$(ResonitePath)/</GamePath>
+    <GamePath Condition="Exists('$(MSBuildProgramFiles32)\Steam\steamapps\common\Resonite\')">$(MSBuildProgramFiles32)\Steam\steamapps\common\Resonite\</GamePath>
+    <GamePath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/Resonite/')">$(HOME)/.steam/steam/steamapps/common/Resonite/</GamePath>
+
+    <BepInExPath Condition="'$(BepInExPath)' != ''">$(BepInExPath)/</BepInExPath>
+    <BepInExPath Condition="Exists('$(GamePath)')">$(GamePath)BepInEx/</BepInExPath>
+    <BepInExPath Condition="Exists('$(APPDATA)\r2modmanPlus-local\Resonite\profiles\Default\BepInEx')">$(APPDATA)\r2modmanPlus-local\Resonite\profiles\Default\BepInEx\</BepInExPath>
+    <BepInExPath Condition="Exists('$(XDG_CONFIG_HOME)/r2modmanPlus-local/Resonite/profiles/Default/BepInEx')">$(XDG_CONFIG_HOME)/r2modmanPlus-local/Resonite/profiles/Default/BepInEx/</BepInExPath>
+    <BepInExPath Condition="Exists('$(APPDATA)\com.kesomannen.gale\resonite\profiles\Default\BepInEx\')">$(APPDATA)\com.kesomannen.gale\resonite\profiles\Default\BepInEx\</BepInExPath>
+    <BepInExPath Condition="Exists('$(XDG_DATA_HOME)/com.kesomannen.gale/resonite/profiles/Default/BepInEx/')">$(XDG_DATA_HOME)/com.kesomannen.gale/resonite/profiles/Default/BepInEx/</BepInExPath>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,12 @@
+<Project>
+
+  <PropertyGroup>
+    <!-- Set if the default Steam game install directory doesn't work. -->
+    <!-- <GamePath></GamePath> -->
+    <!-- Set if your BepInEx folder isn't under the game directory. -->
+    <!-- <BepInExPath></BepInExPath> -->
+    <!-- Set to false to skip copying the built plugin into your BepInEx folder on build. -->
+    <!-- <CopyToPlugins>false</CopyToPlugins> -->
+  </PropertyGroup>
+
+</Project>

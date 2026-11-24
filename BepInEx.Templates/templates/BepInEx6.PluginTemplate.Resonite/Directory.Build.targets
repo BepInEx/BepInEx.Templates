@@ -1,5 +1,5 @@
 <Project>
-  
+
   <!--
     Build Thunderstore package by calling `dotnet build -c Release -target:PackTS -v d` (verbosity detailed).
     Publish to Thunderstore by including `-property:PublishTS=true` in the command.
@@ -14,7 +14,32 @@
       <BuildArgument Condition="'$(PublishTS)' == 'true'">publish</BuildArgument>
     </PropertyGroup>
 
-    <Exec Command="dotnet tool restore" WorkingDirectory="$(SolutionDir)" />
-    <Exec Command="dotnet tcli $(BuildArgument) --package-version $(Version)" WorkingDirectory="$(SolutionDir)" />
+    <Exec Command="dotnet tool restore" WorkingDirectory="$(SolutionRoot)" />
+    <Exec Command="dotnet tcli $(BuildArgument) --package-version $(Version)" WorkingDirectory="$(SolutionRoot)" />
+  </Target>
+
+  <!--#if (ci == "github") -->
+  <Target Name="EmitVersionToActions" AfterTargets="PackTS_Execute" Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <Exec Command="echo &quot;version=$(Version)&quot; >> $GITHUB_OUTPUT" />
+  </Target>
+  <!--#endif -->
+
+  <!--
+    Dev-loop deploy: `dotnet build -p:CopyToPlugins=true` copies the built
+    plugin into $(BepInExPath)plugins\$(AssemblyName).
+
+    The destination is normalised inside the target because a `-p:BepInExPath=`
+    global property cannot be rewritten by Directory.Build.props.
+  -->
+  <Target Name="CopyToPlugins" AfterTargets="PostBuildEvent" Condition="'$(CopyToPlugins)' == 'true' and '$(BepInExPath)' != ''">
+    <PropertyGroup>
+      <PluginDestination>$(BepInExPath.TrimEnd('\').TrimEnd('/'))/plugins/$(AssemblyName)</PluginDestination>
+    </PropertyGroup>
+    <ItemGroup>
+      <PluginFiles Include="$(TargetPath)" />
+      <PluginFiles Include="$(TargetDir)$(TargetName).pdb" Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
+    </ItemGroup>
+    <Copy SourceFiles="@(PluginFiles)" DestinationFolder="$(PluginDestination)" />
+    <Message Text="Copied plugin to $(PluginDestination)" Importance="high" />
   </Target>
 </Project>

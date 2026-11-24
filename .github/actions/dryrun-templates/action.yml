@@ -13,3 +13,11 @@ runs:
         cd temp-test
         dotnet new bep6resonite --dry-run --diagnostics
       shell: bash
+
+    - name: Test BepInEx6 GitHub Template
+      if: always()
+      run: |
+        mkdir -p temp-test-github
+        cd temp-test-github
+        dotnet new bep6resonite-github --dry-run --diagnostics
+      shell: bash

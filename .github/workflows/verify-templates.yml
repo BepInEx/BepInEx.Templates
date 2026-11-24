@@ -5,8 +5,8 @@ on:
   pull_request:
   
 jobs:
-  test-sdk9:
-    name: Test .NET SDK 9
+  test-sdk11:
+    name: Test .NET SDK 11
     runs-on: ubuntu-latest
     steps:
       - name: Fetch Sources
@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-dotnet@v4
         id: setup-dotnet
         with:
-          dotnet-version: 10.0.x
+          dotnet-version: 11.0.x
 
       - run: |
           dotnet new globaljson --sdk-version ${{ steps.setup-dotnet.outputs.dotnet-version }}

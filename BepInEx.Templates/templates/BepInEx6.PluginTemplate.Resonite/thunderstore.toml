@@ -13,7 +13,7 @@ containsNsfwContent = false
 
 # List any dependencies your mod has here, in the format "namespace-modname" = "version-constraint"
 [package.dependencies] 
-ResoniteModding-BepisLoader = "1.5.1"
+ResoniteModding-BepisLoader = "1.7.0"
 ResoniteModding-BepisResoniteWrapper = "1.0.2"
 
 [build]
@@ -26,20 +26,14 @@ outdir = "./build"
 source = "./ProjectName/bin/Release/ProjectName.dll"
 target = "plugins/ProjectName/"
 
-# Include the PDB file for better debugging support
-[[build.copy]]
-source = "./ProjectName/bin/Release/ProjectName.pdb"
-target = "plugins/ProjectName/"
-
 # Uncomment the following lines to include CHANGELOG file in your mod package. https://wiki.thunderstore.io/mods/updating-a-package#changelog
 # [[build.copy]]
 # source = "./CHANGELOG.md"
 # target = "/"
 
-# Uncomment the following line to include LICENSE file in your mod package, if you have one.
-# [[build.copy]]
-# source = "./LICENSE"
-# target = "/"
+[[build.copy]]
+source = "./LICENSE"
+target = "/"
 
 [publish]
 repository = "https://thunderstore.io"

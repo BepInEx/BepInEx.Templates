@@ -3,28 +3,38 @@
   <PropertyGroup>
     <Version>{version}</Version>
     <Authors>{authors}</Authors>
-    <TargetFramework>net10.0</TargetFramework>
-    <RepositoryUrl>{repositoryUrl}</RepositoryUrl>
-    <PackageId>{packageId}</PackageId>
+    <TargetFramework>net11.0</TargetFramework>
     <Product>ProjectName</Product>
+    <Description>TODO: Describe what your plugin does.</Description>
+    <Copyright>Copyright (c) {firstAuthor} $([System.DateTime]::UtcNow.Year)</Copyright>
+    <PackageId>{packageId}</PackageId>
+    <PackageProjectUrl>{repositoryUrl}</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>See {repositoryUrl}/releases</PackageReleaseNotes>
+    <PackageTags>resonite; bepinex; mod; plugin; bepis; BepisLoader; Thunderstore</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>{repositoryUrl}</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <RootNamespace>ProjectName</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Deterministic>true</Deterministic>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <CopyToPlugins>false</CopyToPlugins>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <DebugType>embedded</DebugType>
+    <CopyToPlugins Condition="'$(CopyToPlugins)' == ''">true</CopyToPlugins>
     <ThunderstorePackable>true</ThunderstorePackable>
-    <GamePath Condition="'$(ResonitePath)' != ''">$(ResonitePath)/</GamePath>
-    <GamePath Condition="Exists('$(MSBuildProgramFiles32)\Steam\steamapps\common\Resonite\')">$(MSBuildProgramFiles32)\Steam\steamapps\common\Resonite\</GamePath>
-    <GamePath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/Resonite/')">$(HOME)/.steam/steam/steamapps/common/Resonite/</GamePath>
-    <PluginTargetDir>$(GamePath)BepInEx\plugins\$(AssemblyName)</PluginTargetDir>
-    <RestoreAdditionalProjectSources>
-      https://nuget-modding.resonite.net/v3/index.json;
-    </RestoreAdditionalProjectSources>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <!-- Modding dependencies -->
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="11.0.100" PrivateAssets="all" />
+    <PackageReference Include="BepInEx.NET.CoreCLR" Version="6.0.0-be.*" IncludeAssets="compile" />
     <PackageReference Include="BepInEx.ResonitePluginInfoProps" Version="3.*" />
     <PackageReference Include="ResoniteModding.BepInExResoniteShim" Version="0.9.*" />
     <PackageReference Include="ResoniteModding.BepisResoniteWrapper" Version="1.*" />
@@ -51,14 +61,4 @@
     </Reference>
   </ItemGroup>
 
-  <!-- Post-build copy to game plugins folder -->
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <ItemGroup>
-      <PluginFiles Include="$(TargetPath)" />
-      <PluginFiles Include="$(TargetDir)$(TargetName).pdb" Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
-    </ItemGroup>
-    
-    <Copy SourceFiles="@(PluginFiles)" DestinationFolder="$(PluginTargetDir)" Condition="'$(CopyToPlugins)' == 'true'" />
-    <Message Text="Copied plugin files to $(PluginTargetDir)" Importance="high" Condition="'$(CopyToPlugins)' == 'true'" />
-  </Target>
 </Project>

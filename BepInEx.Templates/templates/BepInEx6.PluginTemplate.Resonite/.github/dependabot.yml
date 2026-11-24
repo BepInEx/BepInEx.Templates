@@ -1,0 +1,33 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    cooldown:
+      default-days: 7
+    directory: /
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    labels:
+      - internal
+    commit-message:
+      prefix: chore
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+
+  - package-ecosystem: nuget
+    cooldown:
+      default-days: 7
+    directory: /
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    labels:
+      - internal
+    commit-message:
+      prefix: chore
+    groups:
+      nuget:
+        patterns:
+          - "*"

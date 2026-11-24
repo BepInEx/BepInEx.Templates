@@ -484,3 +484,6 @@ $RECYCLE.BIN/
 # Thunderstore packaging
 dist/
 build/
+
+# Local build overrides (see Config.Build.user.props.template)
+Config.Build.user.props

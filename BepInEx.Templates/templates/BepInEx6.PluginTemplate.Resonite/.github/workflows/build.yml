@@ -1,0 +1,43 @@
+name: Build
+
+on:
+  push:
+    branches: [ '**' ]
+  pull_request:
+    branches: [ '**' ]
+  workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+        steps:
+            -   uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+                with:
+                    fetch-depth: 0
+                    persist-credentials: false
+            -   uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
+                with:
+                    global-json-file: global.json
+            -   name: Build and create Thunderstore package
+                id: build
+                run: |
+                    dotnet build -c Release -t:PackTS
+                    dotnet pack -c Release --no-build -o ./bin/dist
+                    cp ./ProjectName/bin/Release/ProjectName.dll ./bin/dist/
+            -   name: Show version
+                id: info
+                env:
+                    VERSION: '${{ steps.build.outputs.version }}'
+                run: |
+                    echo "Version found: $VERSION"
+                    echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+            -   name: Upload artifacts
+                uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+                with:
+                    name: 'ProjectName-${{ steps.build.outputs.version }}-${{ steps.info.outputs.sha_short }}'
+                    path: |
+                        ./bin/dist/*.nupkg
+                        ./bin/dist/*.dll
+                        ./build/*.zip
